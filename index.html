@@ -1,12 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head> 
+<head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luca Pasetto</title>
-  </head>
+    <!-- Dependencies -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+	
+    <!-- Custom CSS -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+		
+		.big-icon {
+			font-size: 2rem;
+		}
+    </style>
 
-  <body>
-    Hello world
-  </body>
+</head>
+
+<body>
+    <header class="bg-primary text-white text-center py-5">
+        <img src="small_photo360_200.jpg" class="rounded" alt="Luca Pasetto" id="small-photo" width="360" 
+     height="200">
+        <h1>Luca Pasetto</h1>
+        <p class="lead">Postdoctoral researcher at the University of Luxembourg</p>
+
+    </header>
+
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
+	    <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
+					<li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
+					<li class="nav-item"><a class="nav-link" href="#history">Academic History</a></li>					
+					<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+				</ul>
+			</div>
+		</div>			
+    </nav>
+
+    <section id="about" class="container py-5">
+        <h2>About Me</h2>
+        <p>
+		I am a postdoctoral researcher at the Department of Computer Science of the University of Luxembourg,
+		where I am a member of the CLAiM group on Computational Law and Machine Ethics led by Dr. Réka Markovich.
+		</p>
+		<p>
+		My current research focuses on knowledge representation and automation of reasoning with non-classical and non-monotonic logics, especially with application to the legal context.
+		I am also interested in designing and applying formal techniques to assess and explain the behaviour of non-transparent systems and to check for compliance with regulatory constraints.
+		</p>
+		<p>
+		I completed degrees in Computer Science and Computer Engineering and obtained my PhD in Computer Science (October 2022) from Università degli Studi di Verona, Italy.
+		During the PhD I worked in the
+		fields of knowledge representation and automated reasoning applied to the
+		legal domain, focusing on defeasible deontic logic and its automation. After
+		the PhD and before joining the University of Luxembourg, I had a one-year
+		post-doctoral position at Università degli Studi di Verona, where I also taught as an
+		assistant professor.
+		</p>
+ <p>
+Research interests:
+<ul>
+<li>
+Legal Knowledge Representation and Reasoning
+</li>
+<li>
+Automated Reasoning
+</li>
+<li>
+Explainable AI
+</li>
+<li>
+Deontic Logic and Normative Systems
+</li>
+</ul>
+
+
+
+        </p>
+
+    </section>
+
+    <section id="publications" class="bg-light py-5">
+	    <div class="container">
+			<h2>Publications</h2>
+			<ul>
+				<li><strong>2023</strong></li>
+				<ul>
+				<li>
+				Luca Pasetto, Matteo Cristani, Guido Governatori, Francesco Olivieri, Edoardo Zorzi:
+Extraction of Defeasible Proofs as Explanations. AI³@AI*IA 2023
+				</li>
+				<li>
+				Davide Liga, Luca Pasetto:
+Testing Spatial Reasoning of Large Language Models: the Case of Tic-Tac-Toe. AIxPAC@AI*IA 2023: 64-79
+				</li>
+				<li>
+				Matteo Cristani, Guido Governatori, Francesco Olivieri, Luca Pasetto, Francesco Tubini, Celeste Veronese, Alessandro Villa, Edoardo Zorzi:
+The architecture of a reasoning system for Defeasible Deontic Logic. KES 2023: 4214-4224
+				</li>
+				<li>
+				Luca Olivieri, Luca Pasetto:
+Towards Compliance of Smart Contracts with the European Union Data Act. OVERLAY@AI*IA 2023: 61-66
+				</li>
+				</ul>
+				<li><strong>2022</strong></li>
+				<ul>
+				<li>				
+				Matteo Cristani, Guido Governatori, Francesco Olivieri, Luca Pasetto, Francesco Tubini, Celeste Veronese, Alessandro Villa, Edoardo Zorzi:
+Houdini (unchained): An Effective Reasoner for Defeasible Logic. AI³@AI*IA 2022
+				</li>
+				<li>
+				Matteo Cristani, Francesco Olivieri, Tewabe Chekole Workneh, Luca Pasetto, Claudio Tomazzoli:
+Classification Rules Explain Machine Learning. ICAART (3) 2022: 897-904
+				</li>
+				<li>
+				Matteo Cristani, Francesco Olivieri, Luca Pasetto, Claudio Tomazzoli, Tewabe Chekole Workneh:
+Impact Logic: Reasoning with resources and losses. KES 2022: 3856-3864
+				</li>
+				</ul>
+				<li><strong>2021</strong></li>
+				<ul>
+				<li>
+				Matteo Cristani, Francesco Olivieri, Luca Pasetto:
+Revising Ethical Principles and Norms in Hybrid Societies: Basic Principles and Issues. KES-AMSTA 2021: 103-113
+				</li>
+				<li>
+				Nicola Assolini, Adelaide Baronchelli, Matteo Cristani, Luca Pasetto, Francesco Olivieri, Roberto Ricciuti, Claudio Tomazzoli:
+Text Analytics Can Predict Contract Fairness, Transparency and Applicability. WEBIST 2021: 316-323
+				</li>
+				</ul>
+				<li><strong>2020</strong></li>
+				<ul>
+				<li>
+				Matteo Cristani, Luca Pasetto, Claudio Tomazzoli:
+A knowledge-intensive methodology for explainable sales prediction. KES 2020: 1180-1187
+				</li>
+				<li>
+				Matteo Cristani, Luca Pasetto, Claudio Tomazzoli:
+Protecting the environment: a multi-agent approach to environmental monitoring. KES 2020: 3636-3644
+				</li>
+				<li>	
+				Matteo Cristani, Claudio Tomazzoli, Francesco Olivieri, Luca Pasetto:
+An Ontology of Changes in Normative Systems from an Agentive Viewpoint. PAAMS (Workshops) 2020: 131-142				
+				</li>
+				</ul>
+				<li><strong>2018</strong></li>
+				<ul>
+				<li>
+				Bianca De Blasi, Matthias J. Koepp, Ilaria Boscolo Galazzo, Anna Barnes, Luca Pasetto, Gloria Menegaz, Silvia Francesca Storti:
+Pipeline Comparison for the Pre-Processing of Resting-State Data in Epilepsy. EUSIPCO 2018: 1137-1141
+				</li>
+				</ul>
+			</ul>
+		</div>
+    </section>
+	
+<section id="history" class="bg-light py-5">
+	    <div class="container">
+			<h2>Academic History and Education</h2>
+			<ul>
+				<li><strong>2023</strong>. Postdoctoral researcher</li>	
+                <em>Department of Computer Science, University of Luxembourg, Luxembourg</em>
+				
+				<li><strong>2022-2023</strong>. Postdoctoral researcher</li>
+                <em>Department of Computer Science, Università degli Studi di Verona, Italy</em>
+				
+				<li><strong>2018-2022</strong>. PhD in Computer Science</li>
+                <em>Department of Computer Science, Università degli Studi di Verona, Italy</em>					
+				
+				<li><strong>2016-2018</strong>. Master's degree  in Computer Science and Engineering, <em>summa cum laude</em></li>
+                <em>Department of Computer Science, Università degli Studi di Verona, Italy</em>
+				
+			</ul>
+		</div>
+    </section>	
+	
+    <section id="contact" class="bg-light py-5">
+		<div class="container">
+			<h2>Contact</h2>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item"><i class="fas fa-envelope"></i> Email: name (dot) surname (at) "uni" (dot) "lu" </li>
+				<li class="list-group-item"><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/luca-pasetto-865421114/">here</a></li>
+				<li class="list-group-item"><i class="ai ai-orcid"></i> ORCiD: <a href="https://orcid.org/0000-0003-1036-1718">here</a></li>
+				<li class="list-group-item"><i class="ai ai-scopus"></i> Scopus: <a href="https://www.scopus.com/authid/detail.uri?authorId=57205376048">here</a></li>
+				<li class="list-group-item"><i class="ai ai-dblp"></i> dblp: <a href="https://dblp.org/pid/231/2635.html">here</a></li>
+				<li class="list-group-item"><i class="ai ai-google-scholar"></i> Scholar: <a href="				https://scholar.google.com/citations?user=Vckm_4AAAAAJ&hl=en">here</a></li>
+				<li class="list-group-item"><i class="ai ai-researchgate"></i> ResearchGate: <a href="https://www.researchgate.net/profile/Luca-Pasetto">here</a></li>
+			</ul>
+			
+			
+			
+		</div>
+    </section>
+
+    <footer class="bg-primary text-white text-center py-3">
+        &copy; 2024 Luca Pasetto
+    </footer>
+
+</body>
+
 </html>
