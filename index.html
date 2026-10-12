@@ -75,6 +75,14 @@
             text-decoration: none;
         }
 
+        /* Highlighted paragraph in About Me */
+        .about-highlight {
+            padding: 0.75rem 1rem;
+            border-left: 4px solid #007bff;
+            border-radius: 0 0.25rem 0.25rem 0;
+            background-color: #eef5ff;
+        }
+
         /* Compact list bullets for teaching and history sections */
         .list-tight li {
             margin-bottom: 0.35rem;
@@ -167,6 +175,12 @@
         <p>
             My current research focuses on knowledge representation and automation of reasoning with non-classical and non-monotonic logics, especially with application to the legal context.
             I am also interested in designing and applying formal techniques to assess and explain the behaviour of non-transparent systems and to check for compliance with regulatory constraints.
+        </p>
+        <p class="about-highlight">
+            Much of my current work centres on <a href="https://logikey.org/"><strong>LogiKEy</strong></a>, a framework and methodology for logic and knowledge engineering.
+            LogiKEy embeds non-classical logics, such as deontic and epistemic logics, in classical higher-order logic, so that proof assistants like Isabelle/HOL can be used to reason with them, find counter-models, and experiment with ethical and legal theories.
+            With Christoph Benzmüller and colleagues, I have used it to formalise mental privacy, epistemic rights and duties, and multi-agent dialogue protocols, and to teach logic with proof assistants.
+            I also co-taught a course on LogiKEy at <a href="https://logikey.org/CoursesAndTutorials/2026-ESSLLI/">ESSLLI 2026</a>.
         </p>
         <p>
             I completed degrees in Computer Science and Computer Engineering and obtained my PhD in Computer Science (October 2022) from Università degli Studi di Verona, Italy.
