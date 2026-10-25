@@ -1,0 +1,167 @@
+/* Styles shared by all pages of the website. */
+
+/* Colours: espresso brown, mustard and warm grey.
+   Every text colour meets the WCAG AA contrast minimum (4.5:1). */
+:root {
+    --espresso: #2f251f;        /* header, menu, footer */
+    --espresso-light: #4a3a31;  /* top of the header gradient */
+    --mustard: #e2b23c;         /* accents */
+    --cream: #f3ead9;           /* text on dark backgrounds */
+    --cream-muted: #d9cbb5;     /* secondary text on dark backgrounds */
+    --bronze: #8a5a00;          /* links */
+    --bronze-dark: #5f3d00;     /* links on hover */
+    --stone: #f4f1ec;           /* page background */
+    --bs-body-color: #2b2622;
+    --bs-body-bg: var(--stone);
+}
+
+a {
+    color: var(--bronze);
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: var(--bronze-dark);
+    text-decoration: underline;
+}
+
+/* Main heading of each page, underlined in mustard */
+.section-title {
+    color: var(--espresso);
+    scroll-margin-top: 4.5rem; /* clear of the sticky menu after a jump to it */
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 3rem;
+    height: 3px;
+    margin-top: 0.4rem;
+    background-color: var(--mustard);
+}
+
+/* Header (home page), menu and footer */
+.site-header {
+    color: var(--cream);
+    background: linear-gradient(var(--espresso-light), var(--espresso));
+}
+
+.site-header .lead {
+    color: var(--cream-muted);
+}
+
+.site-header img {
+    box-shadow: 0 0 0 3px var(--mustard);
+}
+
+.navbar.site-nav {
+    --bs-navbar-color: var(--cream-muted);
+    --bs-navbar-hover-color: var(--mustard);
+    --bs-navbar-active-color: var(--mustard);
+    --bs-navbar-brand-color: var(--cream);
+    --bs-navbar-brand-hover-color: var(--mustard);
+    background-color: var(--espresso);
+    border-bottom: 3px solid var(--mustard);
+}
+
+.site-nav .navbar-brand {
+    font-weight: 600;
+}
+
+.site-footer {
+    color: var(--cream);
+    background-color: var(--espresso);
+}
+
+/* Profile icons in the header */
+.profile-links a {
+    color: var(--mustard);
+    font-size: 1.75rem;
+}
+
+.profile-links a:hover,
+.profile-links a:focus {
+    color: var(--cream);
+    text-decoration: none;
+}
+
+/* Icons from icons.svg */
+.icon {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    vertical-align: -0.125em;
+}
+
+/* Highlighted paragraph in About Me */
+.about-highlight {
+    padding: 0.75rem 1rem;
+    border-left: 4px solid var(--mustard);
+    border-radius: 0 0.25rem 0.25rem 0;
+    background-color: #fbf4e2;
+}
+
+/* Compact list bullets for the teaching and history pages */
+.list-tight li {
+    margin-bottom: 0.35rem;
+}
+
+/* Publication entries: type badge, then the reference */
+.pub-list {
+    list-style: none;
+    padding-left: 0.25rem;
+    margin-top: 0.35rem;
+}
+
+.pub-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+}
+
+/* [copy] button, styled like the links next to it */
+.pub-copy {
+    padding: 0;
+    border: 0;
+    color: var(--bronze);
+    background: none;
+    font: inherit;
+}
+
+.pub-copy:hover,
+.pub-copy:focus {
+    color: var(--bronze-dark);
+    text-decoration: underline;
+}
+
+.pub-badge {
+    flex: 0 0 5.75rem;
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-align: center;
+    text-transform: uppercase;
+    color: #57534e;
+    background-color: #ecebe8;
+}
+
+.pub-badge-journal { color: #2e6b3a; background-color: #e3efe3; }
+.pub-badge-conference { color: #3b5568; background-color: #e4eaef; }
+.pub-badge-workshop { color: #8a5d00; background-color: #f8edcf; }
+.pub-badge-preprint { color: #9a3d23; background-color: #f6e3dc; }
+
+@media (max-width: 575.98px) {
+    .pub-list li {
+        display: block;
+    }
+
+    .pub-badge {
+        display: inline-block;
+        min-width: 5.75rem;
+        margin-right: 0.4rem;
+    }
+}

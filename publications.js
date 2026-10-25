@@ -4,7 +4,7 @@
 (function () {
   'use strict';
 
-  const BIB_FILE = 'publications.bib';
+  const BIB_FILE = '/publications.bib';
   // Fields used only to render the page; they are left out of downloads.
   const SITE_ONLY_FIELDS = ['shortvenue', 'category'];
   // Shown in bold in author lists.
