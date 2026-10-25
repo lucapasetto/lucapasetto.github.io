@@ -8,7 +8,7 @@
     <meta name="description" content="Luca Pasetto is a postdoctoral researcher at the University of Luxembourg working on legal knowledge representation and reasoning, automated reasoning, explainable AI, and deontic logic.">
     <link rel="canonical" href="https://lucapasetto.github.io/">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <meta name="theme-color" content="#007bff">
+    <meta name="theme-color" content="#2f251f">
 
     <!-- Link previews (LinkedIn, Slack, email, ...) -->
     <meta property="og:type" content="profile">
@@ -44,11 +44,9 @@
     }
     </script>
 
-    <!-- Dependencies -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Dependencies (Bootstrap's JavaScript only powers the collapsible menu on small screens) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous" defer></script>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
@@ -58,29 +56,98 @@
 
     <!-- Custom CSS -->
     <style>
-        html {
-            scroll-behavior: smooth;
+        /* Colours: espresso brown, mustard and warm grey.
+           Every text colour meets the WCAG AA contrast minimum (4.5:1). */
+        :root {
+            --espresso: #2f251f;        /* header, menu, footer */
+            --espresso-light: #4a3a31;  /* top of the header gradient */
+            --mustard: #e2b23c;         /* accents */
+            --cream: #f3ead9;           /* text on dark backgrounds */
+            --cream-muted: #d9cbb5;     /* secondary text on dark backgrounds */
+            --bronze: #8a5a00;          /* links */
+            --bronze-dark: #5f3d00;     /* links on hover */
+            --stone: #f4f1ec;           /* alternate section background */
+            --bs-body-color: #2b2622;
+        }
+
+        a {
+            color: var(--bronze);
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus {
+            color: var(--bronze-dark);
+            text-decoration: underline;
+        }
+
+        /* Keeps section headings clear of the sticky menu after a menu jump */
+        section {
+            scroll-margin-top: 3.75rem;
+        }
+
+        section h2 {
+            color: var(--espresso);
+        }
+
+        section h2::after {
+            content: "";
+            display: block;
+            width: 3rem;
+            height: 3px;
+            margin-top: 0.4rem;
+            background-color: var(--mustard);
+        }
+
+        .section-alt {
+            background-color: var(--stone);
+        }
+
+        /* Header, menu and footer */
+        .site-header {
+            color: var(--cream);
+            background: linear-gradient(var(--espresso-light), var(--espresso));
+        }
+
+        .site-header .lead {
+            color: var(--cream-muted);
+        }
+
+        .site-header img {
+            box-shadow: 0 0 0 3px var(--mustard);
+        }
+
+        .navbar.site-nav {
+            --bs-navbar-color: var(--cream-muted);
+            --bs-navbar-hover-color: var(--mustard);
+            --bs-navbar-active-color: var(--mustard);
+            background-color: var(--espresso);
+            border-bottom: 3px solid var(--mustard);
+        }
+
+        .site-footer {
+            color: var(--cream);
+            background-color: var(--espresso);
         }
 
         /* Profile icons in the header */
         .profile-links a {
-            color: #fff;
+            color: var(--mustard);
             font-size: 1.75rem;
-            opacity: 0.85;
         }
 
         .profile-links a:hover,
         .profile-links a:focus {
-            opacity: 1;
+            color: var(--cream);
             text-decoration: none;
         }
 
         /* Highlighted paragraph in About Me */
         .about-highlight {
             padding: 0.75rem 1rem;
-            border-left: 4px solid #007bff;
+            border-left: 4px solid var(--mustard);
             border-radius: 0 0.25rem 0.25rem 0;
-            background-color: #eef5ff;
+            background-color: #fbf4e2;
         }
 
         /* Compact list bullets for teaching and history sections */
@@ -111,14 +178,14 @@
             letter-spacing: 0.03em;
             text-align: center;
             text-transform: uppercase;
-            color: #495057;
-            background-color: #e9ecef;
+            color: #57534e;
+            background-color: #ecebe8;
         }
 
-        .pub-badge-journal { color: #1e7b34; background-color: #e3f3e7; }
-        .pub-badge-conference { color: #0b5ed7; background-color: #e3eeff; }
-        .pub-badge-workshop { color: #9a5800; background-color: #fff1dc; }
-        .pub-badge-preprint { color: #6f42c1; background-color: #efe6fc; }
+        .pub-badge-journal { color: #2e6b3a; background-color: #e3efe3; }
+        .pub-badge-conference { color: #3b5568; background-color: #e4eaef; }
+        .pub-badge-workshop { color: #8a5d00; background-color: #f8edcf; }
+        .pub-badge-preprint { color: #9a3d23; background-color: #f6e3dc; }
 
         @media (max-width: 575.98px) {
             .pub-list li {
@@ -135,8 +202,8 @@
 </head>
 
 <body>
-    <header class="bg-primary text-white text-center py-5">
-        <img src="small_photo300_200.jpg" class="rounded" alt="Luca Pasetto" id="small-photo" width="300" height="200">
+    <header class="site-header text-center py-5">
+        <img src="photo_600x400.jpg" class="rounded" alt="Luca Pasetto" id="small-photo" width="300" height="200">
         <h1>Luca Pasetto</h1>
         <p class="lead">Postdoctoral researcher at the University of Luxembourg</p>
         <ul class="profile-links list-inline mb-0">
@@ -149,9 +216,9 @@
         </ul>
     </header>
 
-    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-md sticky-top site-nav" data-bs-theme="dark">
         <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
@@ -199,7 +266,7 @@
         </ul>
     </section>
 
-    <section id="publications" class="bg-light py-5">
+    <section id="publications" class="section-alt py-5">
         <div class="container">
             <h2>Publications</h2>
             <div id="publication-list">
@@ -215,12 +282,12 @@
             <h2>Teaching</h2>
             <ul class="list-tight">
                 <li>
-                    <strong>2026</strong>. <a href="https://logikey.org/CoursesAndTutorials/2026-ESSLLI/">Experimenting with the LogiKEy Framework &amp; Methodology</a> (w. Christoph Benzmüller)<br>
-                    <em>European Summer School in Logic, Language and Information (ESSLLI 2026)</em>
+                    <strong>2024–2025, 2025–2026, 2026–2027</strong>. Discrete Mathematics 1 (w. Leon van der Torre)<br>
+                    <em>Bachelor in Computer Science, Department of Computer Science, University of Luxembourg</em>
                 </li>
                 <li>
-                    <strong>2024–2025, 2025–2026</strong>. Discrete Mathematics 1 (w. Leon van der Torre)<br>
-                    <em>Bachelor in Computer Science, Department of Computer Science, University of Luxembourg</em>
+                    <strong>2026</strong>. <a href="https://logikey.org/CoursesAndTutorials/2026-ESSLLI/">Experimenting with the LogiKEy Framework &amp; Methodology</a> (w. Christoph Benzmüller)<br>
+                    <em>European Summer School in Logic, Language and Information (ESSLLI 2026)</em>
                 </li>
                 <li>
                     <strong>2024–2025, 2025–2026</strong>. Selected Topics in Artificial Intelligence (w. Emil Weydert)<br>
@@ -246,7 +313,7 @@
         </div>
     </section>
 
-    <section id="history" class="bg-light py-5">
+    <section id="history" class="section-alt py-5">
         <div class="container">
             <h2>Academic History and Education</h2>
             <ul class="list-tight">
@@ -278,7 +345,7 @@
         </div>
     </section>
 
-    <footer class="bg-primary text-white text-center py-3">
+    <footer class="site-footer text-center py-3">
         &copy; Luca Pasetto
     </footer>
 
