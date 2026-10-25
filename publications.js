@@ -1,5 +1,6 @@
 // Renders the publication list from publications.bib into #publication-list.
-// Every entry gets a [bib] link that downloads it as its own .bib file.
+// Every entry gets a [bib] link that downloads it as its own .bib file, and a
+// [copy] button that puts its BibTeX on the clipboard.
 (function () {
   'use strict';
 
@@ -10,6 +11,8 @@
   const HIGHLIGHT_NAME = 'Luca Pasetto';
 
   const container = document.getElementById('publication-list');
+  // Announces copy results to screen readers.
+  const copyStatus = el('span', { class: 'visually-hidden', 'aria-live': 'polite' });
 
   fetch(BIB_FILE, { cache: 'no-cache' })
     .then(response => {
@@ -41,7 +44,11 @@
     }
     container.replaceChildren(
       el('p', { class: 'small' }, el('a', { href: bibHref(entries), download: 'publications.bib' }, 'Download all as BibTeX')),
-      list);
+      list,
+      copyStatus);
+    // Zotero's browser connector scans the page when it loads; this asks it to look
+    // again now that the citation data of the entries is on the page.
+    document.dispatchEvent(new Event('ZoteroItemUpdated', { bubbles: true, cancelable: true }));
   }
 
   function renderEntry(entry) {
@@ -64,10 +71,79 @@
       download: entry.key.replace(/[^\w.-]+/g, '_') + '.bib',
       title: 'Download BibTeX',
     }, '[bib]'));
+    parts.push(copyButton(entry));
     for (const part of parts) body.append(' ', part);
+    body.append(coins(entry));
 
     const badgeClass = 'pub-badge pub-badge-' + label.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     return el('li', {}, el('span', { class: badgeClass }, label), body);
+  }
+
+  function copyButton(entry) {
+    const button = el('button', { type: 'button', class: 'pub-copy', title: 'Copy BibTeX' }, '[copy]');
+    button.addEventListener('click', () => {
+      copyText(toBibTeX(entry)).then(
+        () => showCopyResult(button, '[copied]', 'BibTeX copied to the clipboard'),
+        () => showCopyResult(button, '[copy failed]', 'Copying failed; use the bib link to download it instead'));
+    });
+    return button;
+  }
+
+  // Uses the Clipboard API, or the older copy command where the API is missing or refused.
+  function copyText(text) {
+    const viaApi = navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject();
+    return viaApi.catch(() => {
+      const area = el('textarea', { readonly: '', style: 'position: fixed; opacity: 0;' }, text);
+      document.body.append(area);
+      area.select();
+      const copied = document.execCommand('copy');
+      area.remove();
+      if (!copied) throw new Error('copy command failed');
+    });
+  }
+
+  function showCopyResult(button, label, announcement) {
+    button.textContent = label;
+    copyStatus.textContent = announcement;
+    clearTimeout(button.resetTimer);
+    button.resetTimer = setTimeout(() => { button.textContent = '[copy]'; }, 2000);
+  }
+
+  // Invisible citation data in the COinS format (OpenURL 1.0), which reference
+  // managers such as Zotero and Mendeley detect on the page.
+  function coins(entry) {
+    const f = entry.fields;
+    const text = name => latexToText(f[name] || '');
+    const genre = { Journal: 'article', Preprint: 'preprint', Chapter: 'bookitem', Book: 'book',
+      Conference: 'proceeding', Workshop: 'proceeding' }[category(entry)] || 'document';
+    const inJournal = genre === 'article' || genre === 'preprint';
+    const data = [
+      ['ctx_ver', 'Z39.88-2004'],
+      ['rft_val_fmt', `info:ofi/fmt:kev:mtx:${inJournal ? 'journal' : 'book'}`],
+      ['rft.genre', genre],
+    ];
+    if (genre === 'book') {
+      data.push(['rft.btitle', text('title')]);
+    } else if (inJournal) {
+      data.push(['rft.atitle', text('title')], ['rft.jtitle', isArxiv(f) ? 'arXiv' : text('journal')],
+        ['rft.volume', text('volume')], ['rft.issue', text('number')]);
+    } else {
+      data.push(['rft.atitle', text('title')],
+        ['rft.btitle', text('booktitle') || text('journal') || text('howpublished') || text('shortvenue')],
+        ['rft.volume', text('volume')], ['rft.series', text('series')]);
+    }
+    for (const name of splitTopLevel(f.author || '', /\s+and\s+/iy)) {
+      if (name === 'others') continue;
+      const parts = splitTopLevel(name, /,/y); // keep "Last, First" so multi-word surnames survive
+      data.push(['rft.au', parts.length > 1 ? `${latexToText(parts[0])}, ${latexToText(parts[parts.length - 1])}` : latexToText(name)]);
+    }
+    data.push(['rft.date', text('year')], ['rft.pages', text('pages').replace(/–/g, '-')], ['rft.pub', text('publisher')]);
+    for (const [, href] of entryLinks(f)) {
+      const doi = /^https:\/\/doi\.org\/(.+)$/.exec(href);
+      data.push(['rft_id', doi ? 'info:doi/' + doi[1] : href]);
+    }
+    const kev = data.filter(([, value]) => value).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+    return el('span', { class: 'Z3988', title: kev });
   }
 
   // The `category` field if given, otherwise a guess from the entry type and venue.
