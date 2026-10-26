@@ -65,8 +65,10 @@ a:focus {
     border-bottom: 3px solid var(--mustard);
 }
 
+/* Home icon at the left of the menu */
 .site-nav .navbar-brand {
-    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1;
 }
 
 .site-footer {
