@@ -88,13 +88,12 @@
 
     <nav class="navbar navbar-expand-md sticky-top site-nav" data-bs-theme="dark">
         <div class="container">
-            <a class="navbar-brand" href="/" title="Home" aria-label="Home"><svg class="icon" aria-hidden="true"><use href="/icons.svg#home"></use></svg></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link{% if page.url == '/' %} active{% endif %}" href="/"{% if page.url == '/' %} aria-current="page"{% endif %}>About Me</a></li>
+                    <li class="nav-item"><a class="nav-link nav-home{% if page.url == '/' %} active{% endif %}" href="/" title="Home" aria-label="Home"{% if page.url == '/' %} aria-current="page"{% endif %}><svg class="icon" aria-hidden="true"><use href="/icons.svg#home"></use></svg></a></li>
                     <li class="nav-item"><a class="nav-link{% if page.url == '/publications/' %} active{% endif %}" href="/publications/"{% if page.url == '/publications/' %} aria-current="page"{% endif %}>Publications</a></li>
                     <li class="nav-item"><a class="nav-link{% if page.url == '/teaching/' %} active{% endif %}" href="/teaching/"{% if page.url == '/teaching/' %} aria-current="page"{% endif %}>Teaching</a></li>
                     <li class="nav-item"><a class="nav-link{% if page.url == '/history/' %} active{% endif %}" href="/history/"{% if page.url == '/history/' %} aria-current="page"{% endif %}>Academic History</a></li>
